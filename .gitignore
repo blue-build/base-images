@@ -1,3 +1,5 @@
 cosign.key
 cosign.private
+MOK.priv
 /Containerfile
+/.bluebuild-scripts_*
