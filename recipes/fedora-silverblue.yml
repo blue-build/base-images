@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: base-images/fedora-silverblue
+description: Reference implementation and base images for BlueBuild.
+base-image: quay.io/fedora-ostree-desktops/silverblue
+image-version: 42
+modules:
+  - from-file: base/common.yml
+  - from-file: base/silverblue.yml
+  - type: os-release
+    properties:
+      NAME: BlueBuildOS
+      PRETTY_NAME: BlueBuild OS - Silverblue (FROM Fedora Silverblue)
+  - from-file: base/post-build.yml
