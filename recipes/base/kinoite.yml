@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
+modules:
+  - type: dnf
+    install:
+      packages:
+        - fcitx5-qt
+        - fcitx5-gtk
+        - fcitx5-chinese-addons
+        - fcitx5-hangul
+        - fcitx5-libthai
+        - fcitx5-mozc
+        - fcitx5-sayura
+        - fcitx5-unikey
+        - fcitx5-configtool
+        - kcm-fcitx5
+        - icoutils
+        - kate
+        - kf6-kimageformats
+        - kio-admin
+        - ksshaskpass
+        - qt6-qtimageformats
+      exclude:
+        - ffmpegthumbnailer
+        - plasma-discover-rpm-ostree
+    remove:
+      auto-remove: false
+      packages:
+        - ffmpegthumbnailer
+        - plasma-discover-rpm-ostree
+  - type: script
+    snippets:
+      - dnf5 versionlock add "qt6-*"

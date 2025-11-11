@@ -7,6 +7,8 @@ export BB_GENISO_VARIANT := "kinoite"
 build *args:
     bluebuild build {{args}}
 
+build-all: (build "recipes/*.yml")
+
 generate-iso recipe:
     #!/usr/bin/env nu
     let recipe = open {{ recipe }}
