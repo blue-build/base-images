@@ -8,6 +8,7 @@ alt-tags:
   - gts
 modules:
   - from-file: base/common.yml
+  - from-file: base/common-gts.yml
   - from-file: base/kinoite.yml
   - type: os-release
     properties:
