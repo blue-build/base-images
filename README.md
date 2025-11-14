@@ -4,16 +4,24 @@ This repo consists of base images maintained by the BlueBuild org and built with
 
 ## Images
 
-| Recipe                              | Image                                                   | Versions    |
-|-------------------------------------|---------------------------------------------------------|-------------|
-| recipe/fedora-base.yml              | ghcr.io/blue-build/base-images/fedora-base              | 42 (latest) |
-| recipe/fedora-base-nvidia.yml       | ghcr.io/blue-build/base-images/fedora-base-nvidia       | 42 (latest) |
-| recipe/fedora-cosmic.yml            | ghcr.io/blue-build/base-images/fedora-cosmic            | 42 (latest) |
-| recipe/fedora-cosmic-nvidia.yml     | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia     | 42 (latest) |
-| recipe/fedora-silverblue.yml        | ghcr.io/blue-build/base-images/fedora-silverblue        | 42 (latest) |
-| recipe/fedora-silverblue-nvidia.yml | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia | 42 (latest) |
-| recipe/fedora-kinoite.yml           | ghcr.io/blue-build/base-images/fedora-kinoite           | 42 (latest) |
-| recipe/fedora-kinoite-nvidia.yml    | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia    | 42 (latest) |
+| Recipe                                  | Image                                                   | Versions    |
+|-----------------------------------------|---------------------------------------------------------|-------------|
+| recipe/fedora-base.yml                  | ghcr.io/blue-build/base-images/fedora-base              | 43 (latest) |
+| recipe/fedora-base-nvidia.yml           | ghcr.io/blue-build/base-images/fedora-base-nvidia       | 43 (latest) |
+| recipe/fedora-cosmic.yml                | ghcr.io/blue-build/base-images/fedora-cosmic            | 43 (latest) |
+| recipe/fedora-cosmic-nvidia.yml         | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia     | 43 (latest) |
+| recipe/fedora-silverblue.yml            | ghcr.io/blue-build/base-images/fedora-silverblue        | 43 (latest) |
+| recipe/fedora-silverblue-nvidia.yml     | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia | 43 (latest) |
+| recipe/fedora-kinoite.yml               | ghcr.io/blue-build/base-images/fedora-kinoite           | 43 (latest) |
+| recipe/fedora-kinoite-nvidia.yml        | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia    | 43 (latest) |
+| recipe/fedora-base-gts.yml              | ghcr.io/blue-build/base-images/fedora-base              | 42 (gts)    |
+| recipe/fedora-base-nvidia-gts.yml       | ghcr.io/blue-build/base-images/fedora-base-nvidia       | 42 (gts)    |
+| recipe/fedora-cosmic-gts.yml            | ghcr.io/blue-build/base-images/fedora-cosmic            | 42 (gts)    |
+| recipe/fedora-cosmic-nvidia-gts.yml     | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia     | 42 (gts)    |
+| recipe/fedora-silverblue-gts.yml        | ghcr.io/blue-build/base-images/fedora-silverblue        | 42 (gts)    |
+| recipe/fedora-silverblue-nvidia-gts.yml | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia | 42 (gts)    |
+| recipe/fedora-kinoite-gts.yml           | ghcr.io/blue-build/base-images/fedora-kinoite           | 42 (gts)    |
+| recipe/fedora-kinoite-nvidia-gts.yml    | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia    | 42 (gts)    |
 
 ## Installation
 

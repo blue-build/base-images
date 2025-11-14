@@ -26,6 +26,7 @@ jobs:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
       matrix:
         recipe:
+          # Fedora Latest
           - fedora-base.yml
           - fedora-base-nvidia.yml
           - fedora-cosmic.yml
@@ -34,6 +35,16 @@ jobs:
           - fedora-silverblue-nvidia.yml
           - fedora-kinoite.yml
           - fedora-kinoite-nvidia.yml
+
+          # Fedora GTS
+          - fedora-base-gts.yml
+          - fedora-base-nvidia-gts.yml
+          - fedora-cosmic-gts.yml
+          - fedora-cosmic-nvidia-gts.yml
+          - fedora-silverblue-gts.yml
+          - fedora-silverblue-nvidia-gts.yml
+          - fedora-kinoite-gts.yml
+          - fedora-kinoite-nvidia-gts.yml
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:

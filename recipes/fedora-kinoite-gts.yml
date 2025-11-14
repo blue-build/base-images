@@ -1,14 +1,16 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-name: base-images/fedora-silverblue
+name: base-images/fedora-kinoite
 description: Reference implementation and base images for BlueBuild.
-base-image: quay.io/fedora-ostree-desktops/silverblue
-image-version: 43
+base-image: quay.io/fedora-ostree-desktops/kinoite
+image-version: 42
+alt-tags:
+  - gts
 modules:
   - from-file: base/common.yml
-  - from-file: base/silverblue.yml
+  - from-file: base/kinoite.yml
   - type: os-release
     properties:
       NAME: BlueBuildOS
-      PRETTY_NAME: BlueBuild OS - Silverblue (FROM Fedora Silverblue)
+      PRETTY_NAME: BlueBuild OS - Kinoite (FROM Fedora Kinoite)
   - from-file: base/post-build.yml
