@@ -27,14 +27,14 @@ jobs:
       matrix:
         recipe:
           # Fedora Latest
-          - fedora-base.yml
-          - fedora-base-nvidia.yml
-          - fedora-cosmic.yml
-          - fedora-cosmic-nvidia.yml
-          - fedora-silverblue.yml
-          - fedora-silverblue-nvidia.yml
-          - fedora-kinoite.yml
-          - fedora-kinoite-nvidia.yml
+          - fedora-base-latest.yml
+          - fedora-base-nvidia-latest.yml
+          - fedora-cosmic-latest.yml
+          - fedora-cosmic-nvidia-latest.yml
+          - fedora-silverblue-latest.yml
+          - fedora-silverblue-nvidia-latest.yml
+          - fedora-kinoite-latest.yml
+          - fedora-kinoite-nvidia-latest.yml
 
           # Fedora GTS
           - fedora-base-gts.yml
