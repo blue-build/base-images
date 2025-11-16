@@ -1,13 +1,6 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
 modules:
-  - type: dnf
-    repos:
-      cleanup: true
-      nonfree: negativo17
-      copr:
-        - ublue-os/packages
-        - ublue-os/staging
     install:
       packages:
         - android-udev-rules
