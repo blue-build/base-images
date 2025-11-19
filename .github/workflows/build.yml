@@ -61,13 +61,13 @@ jobs:
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
         # uses: blue-build/github-action@v1.9
-        uses: blue-build/github-action@main
+        uses: blue-build/github-action@test-verify-install
         with:
           recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
-          # verify_install: true
+          verify_install: true
           skip_checkout: true
           rechunk: true
 
