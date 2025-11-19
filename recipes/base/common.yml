@@ -87,6 +87,11 @@ modules:
         - intel-gmmlib
         - libva-intel-media-driver
         - openssh-askpass
+        - gvfs-fuse
+        - gvfs-smb
+        - gvfs-nfs
+        - gvfs-mtp
+
       exclude:
         - google-noto-sans-cjk-vf-fonts
         - default-fonts-cjk-sans
