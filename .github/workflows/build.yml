@@ -70,7 +70,7 @@ jobs:
           verify_install: true
           use_unstable_cli: true
           skip_checkout: true
-          rechunk: true
+          build_chunked_oci: true
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
