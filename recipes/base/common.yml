@@ -2,6 +2,13 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
 modules:
   - type: signing
+  - type: justfiles
+    # source: ghcr.io/blue-build/modules/justfiles:pr-498
+    source: ghcr.io/blue-build/modules:pr-498
+    validate: true
+    install: true
+    include:
+      - 30-secureboot.just
   - type: files
     files:
       - source: base
