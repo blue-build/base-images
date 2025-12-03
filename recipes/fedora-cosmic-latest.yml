@@ -4,6 +4,9 @@ name: base-images/fedora-cosmic
 base-image: quay.io/fedora-ostree-desktops/cosmic-atomic
 image-version: 43
 description: Reference implementation and base images for BlueBuild.
+platforms:
+  - linux/amd64
+  - linux/arm64
 modules:
   - from-file: base/common.yml
   - type: os-release
