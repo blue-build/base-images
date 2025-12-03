@@ -119,6 +119,7 @@ modules:
       # use override to replace mesa and others with less crippled versions
       - from-repo: fedora-multimedia
         install-weak-deps: false
+        skip-unavailable: true
         packages:
           - libva
           - intel-vpl-gpu-rt
