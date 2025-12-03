@@ -28,6 +28,7 @@ modules:
         - ublue-os/packages
         - ublue-os/staging
     install:
+      skip-unavailable: true
       packages:
         - bootc
         - ublue-os-udev-rules
