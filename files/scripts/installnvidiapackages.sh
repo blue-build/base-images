@@ -14,11 +14,7 @@
 
 set -oue pipefail
 
-nvidia_packages_list=('nvidia-driver-cuda' 'libnvidia-fbc' 'libva-nvidia-driver' 'nvidia-driver' 'nvidia-modprobe' 'nvidia-persistenced' 'nvidia-settings' 'libnvidia-fbc' 'libva-nvidia-driver' 'nvidia-driver' 'nvidia-modprobe' 'nvidia-persistenced' 'nvidia-settings')
-
-if [[ "$OS_VERSION" != "43" ]]; then
-    nvidia_packages_list+=('nvidia-container-toolkit')
-fi
+nvidia_packages_list=('nvidia-driver-cuda' 'libnvidia-fbc' 'libva-nvidia-driver' 'nvidia-driver' 'nvidia-modprobe' 'nvidia-persistenced' 'nvidia-settings' 'libnvidia-fbc' 'libva-nvidia-driver' 'nvidia-driver' 'nvidia-modprobe' 'nvidia-persistenced' 'nvidia-settings' 'nvidia-container-toolkit')
 
 curl -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo \
     -o /etc/yum.repos.d/nvidia-container-toolkit.repo
