@@ -11,10 +11,7 @@ modules:
           type: file
           destination: /tmp/certs/private_key.priv
     scripts:
-      - installnvidiakmod.sh
-  - type: script
-    scripts:
-      - installnvidiapackages.sh
+      - installnvidia.sh
   - type: files
     files:
       - source: nvidia
