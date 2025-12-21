@@ -9,6 +9,7 @@ if [ "$OS_ARCH" = "x86_64" ]; then
   rpm_url=$(echo "$release_assets" | jq -cr '.[keys_unsorted[] | select(test("appimage-thumbnailer.*x86_64\\.rpm$"))]')
   curl -fLsS --retry 5 -o "/tmp/appimage-thumbnailer.rpm" "$rpm_url"
   dnf -y install "/tmp/appimage-thumbnailer.rpm" 7zip glib2 gdk-pixbuf2 librsvg2 cairo
+  rm -f "/tmp/appimage-thumbnailer.rpm"
 else
   echo "AppImage thumbnailer is not available for 'aarch64' and other architectures yet"
 fi
