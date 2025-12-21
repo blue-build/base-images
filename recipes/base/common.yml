@@ -177,5 +177,3 @@ modules:
       - rm -f /etc/yum.repos.d/fedora-negativo17.repo
     scripts:
       - install-appimage-thumbnailer.sh
-
-   
