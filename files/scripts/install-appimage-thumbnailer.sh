@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-set -eu
+set -euo pipefail
 
 if [ "$OS_ARCH" = "x86_64" ]; then
   release_assets=$(curl -fLsS --retry 5 -H 'Accept: application/vnd.github+json' \
