@@ -26,6 +26,7 @@ modules:
       cleanup: true
       nonfree: negativo17
     install:
+      skip-unavailable: true
       packages:
         - libopenjph # Manually install dependency for `libheif`, as Negativo upstreamed it
         - repo: fedora-multimedia
@@ -33,6 +34,7 @@ modules:
             - libheif
     replace:
       - from-repo: fedora-multimedia
+        skip-unavailable: true
         packages:
           - libva
           - libva-intel-media-driver
@@ -53,6 +55,7 @@ modules:
     install:
       packages:
         - repo: fedora-multimedia
+          skip-unavailable: true
           packages:
             - libva-utils
             - intel-vaapi-driver
@@ -61,6 +64,7 @@ modules:
             - ffmpeg-libs
     replace:
       - from-repo: fedora-multimedia
+        skip-unavailable: true
         packages:
           - old: ffmpeg-free
             new: ffmpeg
