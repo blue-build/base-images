@@ -8,7 +8,7 @@ if [ "$OS_ARCH" = "x86_64" ]; then
   | jq -cr '.assets | map({(.name | tostring): .browser_download_url}) | add')
   rpm_url=$(echo "$release_assets" | jq -cr '.[keys_unsorted[] | select(test("appimage-thumbnailer.*x86_64\\.rpm$"))]')
   curl -fLsS --retry 5 -o "/tmp/appimage-thumbnailer.rpm" "$rpm_url"
-  dnf5 -y install "/tmp/appimage-thumbnailer.rpm" 7zip
+  dnf -y install "/tmp/appimage-thumbnailer.rpm" 7zip
 else
   echo "AppImage thumbnailer is not available for 'aarch64' and other architectures yet"
 fi
