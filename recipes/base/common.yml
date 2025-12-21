@@ -23,16 +23,12 @@ modules:
   # Install stuff from negativo
   - type: dnf
     repos:
-      cleanup: true
       nonfree: negativo17
     replace:
       - from-repo: fedora-multimedia
         skip-unavailable: true
         packages:
           - libva
-          - libva-intel-media-driver
-          - intel-gmmlib
-          - intel-mediasdk
           - mesa-dri-drivers
           - mesa-filesystem
           - mesa-libEGL
@@ -41,25 +37,34 @@ modules:
           - mesa-va-drivers
           - mesa-vulkan-drivers
           - libheif
+
+  # x86_64 packages only, hence why skip-unavailable is set
+  - type: dnf
+    install:
+      packages:
+        - repo: fedora-multimedia
+          skip-unavailable: true
+          packages:
+            - intel-vaapi-driver
+    replace:
+      - from-repo: fedora-multimedia
+        skip-unavailable: true
+        packages:
+          - libva-intel-media-driver
+          - intel-gmmlib
+          - intel-mediasdk
           
   - type: dnf
-    repos:
-      cleanup: true
-      nonfree: negativo17
     install:
       packages:
         - libopenjph # Manually install dependency for `libheif`, as Negativo upstreamed it
         - repo: fedora-multimedia
-          skip-unavailable: true
           packages:
             - libva-utils
-            - intel-vaapi-driver
             - pipewire-libs-extra
             - heif-pixbuf-loader
-            - ffmpeg-libs
     replace:
       - from-repo: fedora-multimedia
-        skip-unavailable: true
         packages:
           - old: ffmpeg-free
             new: ffmpeg
@@ -68,6 +73,14 @@ modules:
           - old: libavcodec-free
             new: libavcodec
 
+  - type: dnf
+    install:
+      packages:
+        - repo: fedora-multimedia
+          packages:
+            - ffmpeg-libs
+
+  # Install ublue and QOL stuff
   - type: dnf
     repos:
       cleanup: true
