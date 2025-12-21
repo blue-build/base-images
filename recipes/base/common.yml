@@ -31,11 +31,6 @@ modules:
         - repo: fedora-multimedia
           packages:
             - libheif
-            - libva-utils
-            - intel-vaapi-driver
-            - pipewire-libs-extra
-            - heif-pixbuf-loader
-            - ffmpeg-libs
     replace:
       - from-repo: fedora-multimedia
         packages:
@@ -50,6 +45,23 @@ modules:
           - mesa-libgbm
           - mesa-va-drivers
           - mesa-vulkan-drivers
+
+  - type: dnf
+    repos:
+      cleanup: true
+      nonfree: negativo17
+    install:
+      packages:
+        - repo: fedora-multimedia
+          packages:
+            - libva-utils
+            - intel-vaapi-driver
+            - pipewire-libs-extra
+            - heif-pixbuf-loader
+            - ffmpeg-libs
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
           - old: ffmpeg-free
             new: ffmpeg
           - old: libfdk-aac-free
