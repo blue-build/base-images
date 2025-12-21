@@ -20,10 +20,46 @@ modules:
       enabled:
         - bootc-fetch-apply-updates.timer
 
+  # Install stuff from negativo
   - type: dnf
     repos:
       cleanup: true
       nonfree: negativo17
+    install:
+      packages:
+        - libopenjph # Manually install dependency for `libheif`, as Negativo upstreamed it
+        - repo: fedora-multimedia
+          packages:
+            - libheif
+            - libva-utils
+            - intel-vaapi-driver
+            - pipewire-libs-extra
+            - heif-pixbuf-loader
+            - ffmpeg-libs
+    replace:
+      - from-repo: fedora-multimedia
+        packages:
+          - libva
+          - libva-intel-media-driver
+          - intel-gmmlib
+          - intel-mediasdk
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-va-drivers
+          - mesa-vulkan-drivers
+          - old: ffmpeg-free
+            new: ffmpeg
+          - old: libfdk-aac-free
+            new: libfdk-aac
+          - old: libavcodec-free
+            new: libavcodec
+
+  - type: dnf
+    repos:
+      cleanup: true
       copr:
         - ublue-os/packages
         - ublue-os/staging
@@ -39,9 +75,6 @@ modules:
         - apr
         - apr-util
         - distrobox
-        - fdk-aac
-        - ffmpeg
-        - ffmpeg-libs
         - ffmpegthumbnailer
         - flatpak-spawn
         - fuse
@@ -51,20 +84,14 @@ modules:
         - google-noto-sans-cjk-fonts
         - google-noto-sans-javanese-fonts
         - google-noto-sans-sundanese-fonts
-        - heif-pixbuf-loader
         - htop
-        - intel-vaapi-driver
         - just
-        - libavcodec
         - libcamera
         - libcamera-tools
         - libcamera-gstreamer
         - libcamera-ipa
-        - libfdk-aac
-        - libheif
         - libimobiledevice-utils
         - libratbag-ratbagd
-        - libva-utils
         - lshw
         - net-tools
         - nvme-cli
@@ -75,7 +102,6 @@ modules:
         - pam-u2f
         - pam_yubico
         - pamu2fcfg
-        - pipewire-libs-extra
         - pipewire-plugin-libcamera
         - powerstat
         - smartmontools
@@ -92,14 +118,11 @@ modules:
         - xhost
         - xorg-x11-xauth
         - yubikey-manager
-        - intel-gmmlib
-        - libva-intel-media-driver
         - openssh-askpass
         - gvfs-fuse
         - gvfs-smb
         - gvfs-nfs
         - gvfs-mtp
-
       exclude:
         - google-noto-sans-cjk-vf-fonts
         - default-fonts-cjk-sans
@@ -107,6 +130,8 @@ modules:
       auto-remove: false
       packages:
         - fedora-flathub-remote
+        - fedora-third-party
+        - fedora-workstation-repositories
     replace:
       # mitigate upstream packaging bug: https://bugzilla.redhat.com/show_bug.cgi?id=2332429
       # swap the incorrectly installed OpenCL-ICD-Loader for ocl-icd, the expected package
@@ -116,30 +141,10 @@ modules:
           - new: ocl-icd
             old: OpenCL-ICD-Loader
 
-      # use override to replace mesa and others with less crippled versions
-      - from-repo: fedora-multimedia
-        install-weak-deps: false
-        skip-unavailable: true
-        packages:
-          - libva
-          - intel-vpl-gpu-rt
-          - intel-mediasdk
-          - mesa-dri-drivers
-          - mesa-filesystem
-          - mesa-libEGL
-          - mesa-libGL
-          - mesa-libgbm
-          - mesa-va-drivers
-          - mesa-vulkan-drivers
-
-
   - type: script
     env:
       CSFG: /usr/lib/systemd/system-generators/coreos-sulogin-force-generator
     snippets:
-      # Lock the drivers and kernel versions
-      - dnf5 versionlock add kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra libva intel-gmmlib intel-vpl-gpu-rt intel-mediasdk libva-intel-media-driver mesa-dri-drivers mesa-filesystem mesa-libEGL mesa-libGL mesa-libgbm mesa-va-drivers mesa-vulkan-drivers
-
       # use CoreOS' generator for emergency/rescue boot
       # see detail: https://github.com/ublue-os/main/issues/653
       - curl -sSLo ${CSFG} https://raw.githubusercontent.com/coreos/fedora-coreos-config/refs/heads/stable/overlay.d/05core/usr/lib/systemd/system-generators/coreos-sulogin-force-generator
