@@ -26,7 +26,6 @@ modules:
       nonfree: negativo17
     replace:
       - from-repo: fedora-multimedia
-        skip-unavailable: true
         packages:
           - libva
           - mesa-dri-drivers
