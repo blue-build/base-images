@@ -61,6 +61,7 @@ modinfo /usr/lib/modules/${KERNEL_VERSION}/extra/nvidia/nvidia{,-drm,-modeset,-p
 # shellcheck disable=SC2086
 modinfo -l /usr/lib/modules/${KERNEL_VERSION}/extra/nvidia/nvidia{,-drm,-modeset,-peermem,-uvm}.ko.xz
 
+chmod +x ./signmodules.sh
 ./signmodules.sh "nvidia"
 
 ##################################
