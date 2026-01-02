@@ -71,6 +71,7 @@ jobs:
           skip_checkout: true
           build_chunked_oci: true
           max_layers: 64
+          build_opts: '--rechunk-clear-plan'
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
