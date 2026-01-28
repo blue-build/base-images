@@ -31,22 +31,30 @@ jobs:
           # Fedora Latest
           - fedora-base-latest.yml
           - fedora-base-nvidia-latest.yml
+          - fedora-base-nvidia-open-latest.yml
           - fedora-cosmic-latest.yml
           - fedora-cosmic-nvidia-latest.yml
+          - fedora-cosmic-nvidia-open-latest.yml
           - fedora-silverblue-latest.yml
           - fedora-silverblue-nvidia-latest.yml
+          - fedora-silverblue-nvidia-open-latest.yml
           - fedora-kinoite-latest.yml
           - fedora-kinoite-nvidia-latest.yml
+          - fedora-kinoite-nvidia-open-latest.yml
 
           # Fedora GTS
           - fedora-base-gts.yml
           - fedora-base-nvidia-gts.yml
+          - fedora-base-nvidia-open-gts.yml
           - fedora-cosmic-gts.yml
           - fedora-cosmic-nvidia-gts.yml
+          - fedora-cosmic-nvidia-open-gts.yml
           - fedora-silverblue-gts.yml
           - fedora-silverblue-nvidia-gts.yml
+          - fedora-silverblue-nvidia-open-gts.yml
           - fedora-kinoite-gts.yml
           - fedora-kinoite-nvidia-gts.yml
+          - fedora-kinoite-nvidia-open-gts.yml
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
