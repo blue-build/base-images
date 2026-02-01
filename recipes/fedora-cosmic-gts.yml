@@ -14,7 +14,6 @@ modules:
   - from-file: base/common-gts.yml
   - type: os-release
     properties:
-      NAME: BlueBuildOS
       PRETTY_NAME: BlueBuild OS - COSMIC (FROM Fedora cosmic-atomic)
   - from-file: base/post-build.yml
 

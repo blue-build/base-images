@@ -15,7 +15,6 @@ modules:
   - from-file: base/nvidia.yml
   - type: os-release
     properties:
-      NAME: BlueBuildOS
       PRETTY_NAME: BlueBuild OS for Nvidia - COSMIC (FROM Fedora cosmic-atomic)
   - from-file: base/post-build.yml
 

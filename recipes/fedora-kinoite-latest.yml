@@ -12,6 +12,5 @@ modules:
   - from-file: base/kinoite.yml
   - type: os-release
     properties:
-      NAME: BlueBuildOS
       PRETTY_NAME: BlueBuild OS - Kinoite (FROM Fedora Kinoite)
   - from-file: base/post-build.yml

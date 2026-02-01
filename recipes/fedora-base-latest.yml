@@ -11,6 +11,5 @@ modules:
   - from-file: base/common.yml
   - type: os-release
     properties:
-      NAME: BlueBuildOS
       PRETTY_NAME: BlueBuild OS (FROM Fedora base-atomic)
   - from-file: base/post-build.yml

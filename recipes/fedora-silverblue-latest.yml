@@ -12,6 +12,5 @@ modules:
   - from-file: base/silverblue.yml
   - type: os-release
     properties:
-      NAME: BlueBuildOS
       PRETTY_NAME: BlueBuild OS - Silverblue (FROM Fedora Silverblue)
   - from-file: base/post-build.yml
