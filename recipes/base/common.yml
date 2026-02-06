@@ -3,8 +3,6 @@
 modules:
   - type: signing
   - type: justfiles
-    # source: ghcr.io/blue-build/modules/justfiles:pr-498
-    source: ghcr.io/blue-build/modules:pr-498
     validate: true
     install: true
     include:

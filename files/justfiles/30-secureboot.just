@@ -11,7 +11,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-# Enroll Nvidia driver & KMOD signing key for secure boot - Enter password "wunker" if prompted
+# Enroll Nvidia driver & KMOD signing key for secure boot - Enter password "bluebuild" if prompted
 enroll-secure-boot-key:
     #!/usr/bin/bash
     ENROLLMENT_PASSWORD="bluebuild"
