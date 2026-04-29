@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: base-images/fedora-cosmic
 base-image: quay.io/fedora-ostree-desktops/cosmic-atomic
-image-version: 42
+image-version: 43
 description: Reference implementation and base images for BlueBuild.
 platforms:
   - linux/amd64
@@ -11,7 +11,6 @@ alt-tags:
   - gts
 modules:
   - from-file: base/common.yml
-  - from-file: base/common-gts.yml
   - type: os-release
     properties:
       PRETTY_NAME: BlueBuild OS - COSMIC (FROM Fedora cosmic-atomic)

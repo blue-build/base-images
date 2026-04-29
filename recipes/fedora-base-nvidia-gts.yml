@@ -3,7 +3,7 @@
 name: base-images/fedora-base-nvidia
 description: Reference implementation and base images for BlueBuild.
 base-image: quay.io/fedora-ostree-desktops/base-atomic
-image-version: 42
+image-version: 43
 platforms:
   - linux/amd64
   - linux/arm64
@@ -11,7 +11,6 @@ alt-tags:
   - gts
 modules:
   - from-file: base/common.yml
-  - from-file: base/common-gts.yml
   - from-file: base/nvidia.yml
   - type: os-release
     properties:
