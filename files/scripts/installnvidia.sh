@@ -22,19 +22,16 @@ chmod 1777 /var/tmp
 ##################################
 # Repository setup
 ##################################
+if [[ "$IMAGE_NAME" == *open* ]]; then
+    nvidia_repo='fedora-nvidia'
+else
+    nvidia_repo='fedora-nvidia-580'
+fi
+
 KERNEL_VERSION="$(rpm -q "kernel" --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 RELEASE="$(rpm -E '%fedora.%_arch')"
-if [[ "$IMAGE_NAME" == *"open"* ]]; then
-    curl -fLsS --retry 5 -o /etc/yum.repos.d/negativo17-fedora-nvidia.repo https://negativo17.org/repos/fedora-nvidia.repo
-    sed -i '/^enabled=1/a\priority=90' /etc/yum.repos.d/negativo17-fedora-nvidia.repo
-else 
-    curl -fLsS --retry 5 -o /etc/yum.repos.d/fedora-nvidia-580.repo https://negativo17.org/repos/fedora-nvidia-580.repo
-    sed -i '/^enabled=1/a\priority=90' /etc/yum.repos.d/fedora-nvidia-580.repo
 
-    if [ -f /etc/yum.repos.d/fedora-multimedia.repo ]; then
-        sed -i 's/^enabled=.*/enabled=0/' /etc/yum.repos.d/fedora-multimedia.repo
-    fi
-fi
+curl -fLsS --retry 5 -o "/etc/yum.repos.d/${nvidia_repo}.repo" "https://negativo17.org/repos/${nvidia_repo}.repo"
 
 #################################
 # Kernel module
@@ -42,14 +39,20 @@ fi
 dnf install -y --setopt=install_weak_deps=False "kernel-devel-matched-$(rpm -q 'kernel' --queryformat '%{VERSION}')"
 
 dnf install -y --setopt=install_weak_deps=False akmods gcc-c++
+
 cp /usr/sbin/akmodsbuild /usr/sbin/akmodsbuild.backup
+
 # TODO remove this when fixed upstream
 sed -i '/if \[\[ -w \/var \]\] ; then/,/fi/d' /usr/sbin/akmodsbuild
-dnf install -y --setopt=install_weak_deps=False nvidia-kmod-common nvidia-modprobe
-mv /usr/sbin/akmodsbuild.backup /usr/sbin/akmodsbuild
+
+dnf install -y --setopt=install_weak_deps=False \
+    --enable-repo="${nvidia_repo}" \
+    nvidia-kmod-common nvidia-modprobe
 
 echo "Installing kmod..."
 akmods --force --kernels "${KERNEL_VERSION}" --kmod "nvidia"
+
+mv /usr/sbin/akmodsbuild.backup /usr/sbin/akmodsbuild
 
 # Depends on word splitting
 # shellcheck disable=SC2086
@@ -80,9 +83,25 @@ nvidia_packages_list=(\
 curl -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo \
     -o /etc/yum.repos.d/nvidia-container-toolkit.repo
 sed -i 's/^gpgcheck=0/gpgcheck=1/' /etc/yum.repos.d/nvidia-container-toolkit.repo
-sed -i 's/^enabled=0.*/enabled=1/' /etc/yum.repos.d/nvidia-container-toolkit.repo
 
-dnf -y --setopt=install_weak_deps=False install "${nvidia_packages_list[@]}"
+if ! [ -f /etc/pki/tls/certs/ca-bundle.crt ]; then
+    ln /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem /etc/pki/tls/certs/ca-bundle.crt
+fi
+
+dnf -y --setopt=install_weak_deps=False install \
+    --enable-repo='nvidia-container-toolkit' \
+    --enable-repo="${nvidia_repo}" \
+    "${nvidia_packages_list[@]}"
+
+kmod_version=$(rpm -qa | grep akmod-nvidia | awk -F':' '{print $(NF)}' | awk -F'-' '{print $(NF-1)}')
+negativo_version=$(rpm -qa | grep nvidia-modprobe | awk -F':' '{print $(NF)}' | awk -F'-' '{print $(NF-1)}')
+
+echo "kmod_version: ${kmod_version}"
+echo "negativo_version: ${negativo_version}"
+if [[ "$kmod_version" != "$negativo_version" ]]; then
+    echo "Version mismatch!"
+    exit 1
+fi
 
 curl -L https://raw.githubusercontent.com/NVIDIA/dgx-selinux/master/bin/RHEL9/nvidia-container.pp \
     -o nvidia-container.pp
@@ -93,11 +112,6 @@ semodule -i nvidia-container.pp
 ##################################
 dnf -y remove akmod-nvidia akmods kernel-devel kernel-headers
 
-if [ -f /etc/yum.repos.d/fedora-multimedia.repo ]; then
-    sed -i 's/^enabled=.*/enabled=1/' /etc/yum.repos.d/fedora-multimedia.repo
-fi
-
 rm -f nvidia-container.pp
 rm -f /etc/yum.repos.d/nvidia-container-toolkit.repo
-rm -f /etc/yum.repos.d/fedora-nvidia-580.repo
-rm -f /etc/yum.repos.d/negativo17-fedora-nvidia.repo
+rm -f "/etc/yum.repos.d/${nvidia_repo}.repo"
