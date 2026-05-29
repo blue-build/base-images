@@ -28,15 +28,19 @@ else
     nvidia_repo='fedora-nvidia-580'
 fi
 
-KERNEL_VERSION="$(rpm -q "kernel" --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
-RELEASE="$(rpm -E '%fedora.%_arch')"
-
 curl -fLsS --retry 5 -o "/etc/yum.repos.d/${nvidia_repo}.repo" "https://negativo17.org/repos/${nvidia_repo}.repo"
 
 #################################
 # Kernel module
 #################################
-dnf install -y --setopt=install_weak_deps=False "kernel-devel-matched-$(rpm -q 'kernel' --queryformat '%{VERSION}')"
+# Ensure kernel is updated before fetching its $KERNEL_VERSION
+dnf install -y --setopt=install_weak_deps=False kernel
+
+# Use head -1 to get the latest version if multiple are present
+KERNEL_VERSION="$(rpm -q "kernel" --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}' | head -1)"
+
+echo "Installing kernel-devel-matched for kernel version: ${KERNEL_VERSION}"
+dnf install -y --setopt=install_weak_deps=False "kernel-devel-matched-${KERNEL_VERSION%.*}"
 
 dnf install -y --setopt=install_weak_deps=False akmods gcc-c++
 
@@ -49,7 +53,7 @@ dnf install -y --setopt=install_weak_deps=False \
     --enable-repo="${nvidia_repo}" \
     nvidia-kmod-common nvidia-modprobe
 
-echo "Installing kmod..."
+echo "Installing kmod for kernel: ${KERNEL_VERSION}"
 akmods --force --kernels "${KERNEL_VERSION}" --kmod "nvidia"
 
 mv /usr/sbin/akmodsbuild.backup /usr/sbin/akmodsbuild
