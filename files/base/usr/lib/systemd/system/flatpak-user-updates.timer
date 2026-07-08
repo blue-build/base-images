@@ -1,7 +1,6 @@
 [Unit]
-Description=Apply bootc updates
-Documentation=man:bootc(8)
-ConditionPathExists=/run/ostree-booted
+Description=Apply Flatpak system updates
+Documentation=man:flatpak-update(1)
 
 [Timer]
 OnBootSec=1h
