@@ -17,6 +17,10 @@ modules:
         - rpm-ostreed-automatic.timer
       enabled:
         - bootc-fetch-apply-updates.timer
+        - flatpak-system-updates.timer
+    user:
+      enabled:
+        - flatpak-user-updates.timer
 
   # Install stuff from negativo
   - type: dnf
