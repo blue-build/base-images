@@ -4,32 +4,50 @@ This repo consists of base images maintained by the BlueBuild org and built with
 
 ## Images
 
+### Standard
+
+These images contain the `mesa` drivers that only support AMD and Intel graphics.
+
 | Recipe                                          | Image                                                        | Versions    |
 |-------------------------------------------------|--------------------------------------------------------------|-------------|
 | recipe/fedora-base-latest.yml                   | ghcr.io/blue-build/base-images/fedora-base                   | 44 (latest) |
-| recipe/fedora-base-nvidia-latest.yml            | ghcr.io/blue-build/base-images/fedora-base-nvidia            | 44 (latest) |
-| recipe/fedora-base-nvidia-open-latest.yml       | ghcr.io/blue-build/base-images/fedora-base-nvidia-open       | 44 (latest) |
 | recipe/fedora-cosmic-latest.yml                 | ghcr.io/blue-build/base-images/fedora-cosmic                 | 44 (latest) |
-| recipe/fedora-cosmic-nvidia-latest.yml          | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia          | 44 (latest) |
-| recipe/fedora-cosmic-nvidia-open-latest.yml     | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia-open     | 44 (latest) |
 | recipe/fedora-silverblue-latest.yml             | ghcr.io/blue-build/base-images/fedora-silverblue             | 44 (latest) |
-| recipe/fedora-silverblue-nvidia-latest.yml      | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia      | 44 (latest) |
-| recipe/fedora-silverblue-nvidia-open-latest.yml | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia-open | 44 (latest) |
 | recipe/fedora-kinoite-latest.yml                | ghcr.io/blue-build/base-images/fedora-kinoite                | 44 (latest) |
-| recipe/fedora-kinoite-nvidia-latest.yml         | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia         | 44 (latest) |
-| recipe/fedora-kinoite-nvidia-open-latest.yml    | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia-open    | 44 (latest) |
 | recipe/fedora-base-gts.yml                      | ghcr.io/blue-build/base-images/fedora-base                   | 43 (gts)    |
-| recipe/fedora-base-nvidia-gts.yml               | ghcr.io/blue-build/base-images/fedora-base-nvidia            | 43 (gts)    |
-| recipe/fedora-base-nvidia-open-gts.yml          | ghcr.io/blue-build/base-images/fedora-base-nvidia-open       | 43 (gts)    |
 | recipe/fedora-cosmic-gts.yml                    | ghcr.io/blue-build/base-images/fedora-cosmic                 | 43 (gts)    |
-| recipe/fedora-cosmic-nvidia-gts.yml             | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia          | 43 (gts)    |
-| recipe/fedora-cosmic-nvidia-open-gts.yml        | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia-open     | 43 (gts)    |
 | recipe/fedora-silverblue-gts.yml                | ghcr.io/blue-build/base-images/fedora-silverblue             | 43 (gts)    |
-| recipe/fedora-silverblue-nvidia-gts.yml         | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia      | 43 (gts)    |
-| recipe/fedora-silverblue-nvidia-open-gts.yml    | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia-open | 43 (gts)    |
 | recipe/fedora-kinoite-gts.yml                   | ghcr.io/blue-build/base-images/fedora-kinoite                | 43 (gts)    |
-| recipe/fedora-kinoite-nvidia-gts.yml            | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia         | 43 (gts)    |
-| recipe/fedora-kinoite-nvidia-open-gts.yml       | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia-open    | 43 (gts)    |
+
+### NVIDIA
+
+There are 2 different sets of NVIDIA images. We have the "nvidia-open" image with the open kernel module driver which has the latest version of the drivers, but doesn't support some older cards. To make use of the older drivers (`580`), you can use the basic "nvidia" image. The older "nvidia" image is named as such for backwards compatibility with users who have been using it since before the split. You can find out which set of drivers is [supported for your card](https://download.nvidia.com/XFree86/Linux-x86_64/595.71.05/README/supportedchips.html#:~:text=Below%20are%20the,set%20of%20GPUs%3A).
+
+#### Latest
+
+| Recipe                                          | Image                                                        | Versions    | NVIDIA Driver Version |
+|-------------------------------------------------|--------------------------------------------------------------|-------------|-----------------------|
+| recipe/fedora-base-nvidia-open-latest.yml       | ghcr.io/blue-build/base-images/fedora-base-nvidia-open       | 44 (latest) | Latest                |
+| recipe/fedora-cosmic-nvidia-open-latest.yml     | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia-open     | 44 (latest) | Latest                |
+| recipe/fedora-silverblue-nvidia-open-latest.yml | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia-open | 44 (latest) | Latest                |
+| recipe/fedora-kinoite-nvidia-open-latest.yml    | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia-open    | 44 (latest) | Latest                |
+| recipe/fedora-base-nvidia-open-gts.yml          | ghcr.io/blue-build/base-images/fedora-base-nvidia-open       | 43 (gts)    | Latest                |
+| recipe/fedora-cosmic-nvidia-open-gts.yml        | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia-open     | 43 (gts)    | Latest                |
+| recipe/fedora-silverblue-nvidia-open-gts.yml    | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia-open | 43 (gts)    | Latest                |
+| recipe/fedora-kinoite-nvidia-open-gts.yml       | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia-open    | 43 (gts)    | Latest                |
+
+#### 580
+
+| Recipe                                          | Image                                                        | Versions    | NVIDIA Driver Version |
+|-------------------------------------------------|--------------------------------------------------------------|-------------|-----------------------|
+| recipe/fedora-base-nvidia-latest.yml            | ghcr.io/blue-build/base-images/fedora-base-nvidia            | 44 (latest) | 580.x                 |
+| recipe/fedora-cosmic-nvidia-latest.yml          | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia          | 44 (latest) | 580.x                 |
+| recipe/fedora-silverblue-nvidia-latest.yml      | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia      | 44 (latest) | 580.x                 |
+| recipe/fedora-kinoite-nvidia-latest.yml         | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia         | 44 (latest) | 580.x                 |
+| recipe/fedora-base-nvidia-gts.yml               | ghcr.io/blue-build/base-images/fedora-base-nvidia            | 43 (gts)    | 580.x                 |
+| recipe/fedora-cosmic-nvidia-gts.yml             | ghcr.io/blue-build/base-images/fedora-cosmic-nvidia          | 43 (gts)    | 580.x                 |
+| recipe/fedora-silverblue-nvidia-gts.yml         | ghcr.io/blue-build/base-images/fedora-silverblue-nvidia      | 43 (gts)    | 580.x                 |
+| recipe/fedora-kinoite-nvidia-gts.yml            | ghcr.io/blue-build/base-images/fedora-kinoite-nvidia         | 43 (gts)    | 580.x                 |
 
 ## Installation
 
