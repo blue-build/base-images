@@ -10,7 +10,7 @@ if [ -z "$rpm_url" ] || [ "$rpm_url" = "null" ]; then
   exit 0
 fi
 curl -fLsS --retry 5 -o "/tmp/appimage-thumbnailer.rpm" "$rpm_url"
-if [ "$OS_VERSION" -lt 43 ]; then
+if [ "$OS_VERSION" -lt 44 ]; then
   dnf -y install p7zip
 else
   dnf -y install 7zip
