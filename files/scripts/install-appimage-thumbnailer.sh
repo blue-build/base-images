@@ -10,10 +10,5 @@ if [ -z "$rpm_url" ] || [ "$rpm_url" = "null" ]; then
   exit 0
 fi
 curl -fLsS --retry 5 -o "/tmp/appimage-thumbnailer.rpm" "$rpm_url"
-if [ "$OS_VERSION" -lt 43 ]; then
-  dnf -y install p7zip
-else
-  dnf -y install 7zip
-fi
-dnf -y install "/tmp/appimage-thumbnailer.rpm" glib2 gdk-pixbuf2 librsvg2 cairo
+dnf -y install "/tmp/appimage-thumbnailer.rpm" 7zip glib2 gdk-pixbuf2 librsvg2 cairo
 rm -f "/tmp/appimage-thumbnailer.rpm"
