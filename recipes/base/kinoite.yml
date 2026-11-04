@@ -3,6 +3,7 @@
 modules:
   - type: dnf
     install:
+      skip-broken: true
       packages:
         - fcitx5-qt
         - fcitx5-gtk
